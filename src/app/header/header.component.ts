@@ -1,12 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NavigationService } from '../navigation.service';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit{
-    @Output() getPage = new EventEmitter<string>();
-    constructor() {
+    constructor(private ns: NavigationService) {
 
     }
     ngOnInit() {
@@ -14,6 +14,6 @@ export class HeaderComponent implements OnInit{
     }
 
     getSelected(selected: string) {
-        this.getPage.emit(selected);
+        this.ns.pageSelected.emit(selected);
     }
 }
