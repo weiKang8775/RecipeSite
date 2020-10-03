@@ -1,1 +1,9 @@
-<p>recipe-item works!</p>
+<div class="recipe-content">
+  <div class="recipe-content__left">
+    <h4>{{ recipe.name }}</h4>
+    <p class="text-muted">{{ recipe.description }}</p>
+  </div>
+  <div class="recipe-content__right">
+    <img [src]="recipe.imagePath" [alt]="recipe.name">
+  </div>
+</div>
