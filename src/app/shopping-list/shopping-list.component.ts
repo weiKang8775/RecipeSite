@@ -13,7 +13,7 @@ export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[] = [];
   constructor(private sls: ShoppingListService) {
     sls.addIngredient.subscribe((newIngredient: Ingredient) => {
-      this.ingredients = sls.getIngredients();
+      this.addIngredient(newIngredient);
     })
   }
 
