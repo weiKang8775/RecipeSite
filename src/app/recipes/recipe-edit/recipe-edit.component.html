@@ -1,46 +1,34 @@
-<div class="row">
-  <div class="col-xs-12">
-    <form autocomplete="off">
-      <div class="row">
-        <div class="form-group col-xs-5">
-          <label for="nameInput">Name</label>
-          <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp" #nameInput>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-xs-5">
-          <label for="descriptionInput">Description</label>
-          <input type="text" class="form-control" id="descriptionInput" aria-describedby="emailHelp" #nameInput>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-xs-5">
-          <label for="ingredientInput">Ingredient</label>
-          <input type="text" class="form-control" id="ingredientInput" aria-describedby="emailHelp" #nameInput>
-        </div>
-        <div class="form-group col-xs-2">
-          <label for="ingredientAmount">Amount</label>
-          <input type="number" class="form-control" id="ingredientAmount" #amountInput>
-        </div>
-        <div class="form-group col-xs-2">
-          <label for="ingredientUnit">Unit</label>
-          <input type="text" class="form-control" id="ingredientUnit" #unitInput>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <button type="submit" class="btn btn-primary">
-            Add
-          </button>
-        </div>
-      </div>
-    </form>
+<form autocomplete="off">
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp" [(ngModel)]="recipeName" [ngModelOptions]="{standalone: true}">
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <ul class="list-group">
-      <li *ngFor="let ingredient of ingredients" class="list-group-item">{{ ingredient.name }} ({{ ingredient.amount }}{{ ingredient.unit }})</li>
-    </ul>
+  <div class="form-group">
+    <label for="descriptionInput">Description</label>
+    <input type="text" class="form-control" id="descriptionInput" aria-describedby="emailHelp" [(ngModel)]="recipeDescription" [ngModelOptions]="{standalone: true}">
   </div>
-</div>
+  <div class="d-flex justify-content-between align-items-end">
+    <div class="form-group">
+      <label for="ingredientInput">Ingredient</label>
+      <input type="text" class="form-control" id="ingredientInput" aria-describedby="emailHelp" #nameInput>
+    </div>
+    <div class="form-group">
+      <label for="ingredientAmount">Amount</label>
+      <input type="number" class="form-control" id="ingredientAmount" #amountInput>
+    </div>
+    <div class="form-group">
+      <label for="ingredientUnit">Unit</label>
+      <input type="text" class="form-control" id="ingredientUnit" #unitInput>
+    </div>
+    <button type="submit" class="btn btn-primary mb-3 ml-2" (click)="addIngredient(nameInput, amountInput, unitInput)">
+      Add
+    </button>
+  </div>
+
+</form>
+<ul class="list-group mt-4">
+  <li *ngFor="let ingredient of recipeIngredients" class="list-group-item">
+    {{ ingredient.name }} ({{ingredient.amount}}{{ingredient.unit}})
+  </li>
+</ul>
+<button type="button" class="btn btn-primary mt-4" (click)="saveRecipe()">Save</button>

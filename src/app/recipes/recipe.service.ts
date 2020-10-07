@@ -18,4 +18,19 @@ export class RecipeService{
     return this.recipes.slice();
   }
 
+  find(id: number): Recipe {
+    for (let recipe of this.recipes) {
+      if (recipe.id === id) {
+        return recipe;
+      }
+    }
+    return null;
+  }
+
+  save(recipe: Recipe) {
+    const target = this.find(recipe.id);
+    target.name = recipe.name;
+    target.description = recipe.description;
+    target.ingredients = recipe.ingredients;
+  }
 }

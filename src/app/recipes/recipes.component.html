@@ -1,14 +1,10 @@
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4 mr-4">
         <button class="btn btn-primary">New Recipe</button>
         <hr>
         <app-recipe-list></app-recipe-list>
     </div>
-    <div class="col-md-7">
-        <!-- <app-recipe-detail *ngIf="recipeSelected; else noRecipeSelected" [recipe]="recipeSelected"></app-recipe-detail> -->
-        <app-recipe-edit *ngIf="recipeSelected; else noRecipeSelected"></app-recipe-edit>
-        <ng-template #noRecipeSelected>
-            <h3>No recipe selected</h3>
-        </ng-template>
+    <div class="col-md-4">
+        <router-outlet></router-outlet>
     </div>
 </div>
