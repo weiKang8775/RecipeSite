@@ -13,7 +13,10 @@ export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [];
 
   constructor(private rs: RecipeService, private router: Router, private route: ActivatedRoute) {
-    
+    rs.newRecipeEmitter.subscribe((newRecipe: Recipe) => {
+      this.recipes.push(newRecipe);
+      router.navigate(['/recipes', newRecipe.id]);
+    });
   }
 
   ngOnInit(): void {
@@ -21,7 +24,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   getSelectedRecipe(recipe: Recipe) {
-    // this.rs.recipeSelected.emit(recipe);
     this.router.navigate([recipe.id], { relativeTo: this.route })
   }
 }

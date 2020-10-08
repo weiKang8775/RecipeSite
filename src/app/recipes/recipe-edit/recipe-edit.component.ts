@@ -34,7 +34,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   saveRecipe() {
-    this.rs.save(new Recipe(this.recipeName, this.recipeDescription, this.recipe.imagePath, this.recipeIngredients, this.recipe.id));
+    this.rs.save(new Recipe(this.recipeName, this.recipeDescription, this.recipeIngredients, this.recipe.id));
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

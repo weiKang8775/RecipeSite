@@ -1,0 +1,34 @@
+<form autocomplete="off">
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp" [(ngModel)]="newRecipeName" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="form-group">
+    <label for="descriptionInput">Description</label>
+    <input type="text" class="form-control" id="descriptionInput" aria-describedby="emailHelp" [(ngModel)]="newRecipeDescription" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="d-flex justify-content-between align-items-end">
+    <div class="form-group">
+      <label for="ingredientInput">Ingredient</label>
+      <input type="text" class="form-control" id="ingredientInput" aria-describedby="emailHelp" #nameInput>
+    </div>
+    <div class="form-group">
+      <label for="ingredientAmount">Amount</label>
+      <input type="number" class="form-control" id="ingredientAmount" #amountInput>
+    </div>
+    <div class="form-group">
+      <label for="ingredientUnit">Unit</label>
+      <input type="text" class="form-control" id="ingredientUnit" #unitInput>
+    </div>
+    <button type="submit" class="btn btn-primary mb-3 ml-2" (click)="addIngredient(nameInput, amountInput, unitInput)">
+      Add
+    </button>
+  </div>
+
+</form>
+<ul class="list-group mt-4">
+  <li *ngFor="let ingredient of newRecipeIngredients" class="list-group-item">
+    {{ ingredient.name }} ({{ingredient.amount}}{{ingredient.unit}})
+  </li>
+</ul>
+<button type="button" class="btn btn-primary mt-4" (click)="addRecipe()">Save</button>

@@ -5,10 +5,10 @@ import { Recipe } from './recipe.model';
 export class RecipeService{
   private recipes: Recipe[] = 
   [
-    new Recipe("Pasta", "Best Pasta", "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/28055/recipe-book-clipart-md.png", [new Ingredient("Flour", 10, "g"), new Ingredient("Water", 500, "ml")]),
-    new Recipe("Ramen", "Best Ramen", "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/28055/recipe-book-clipart-md.png", [new Ingredient("Flour", 10, "g"), new Ingredient("Water", 500, "ml")])
+    new Recipe("Pasta", "Best Pasta", [new Ingredient("Flour", 10, "g"), new Ingredient("Water", 500, "ml")]),
+    new Recipe("Ramen", "Best Ramen", [new Ingredient("Flour", 10, "g"), new Ingredient("Water", 500, "ml")])
   ];
-  recipeSelected = new EventEmitter<Recipe>();
+  newRecipeEmitter = new EventEmitter<Recipe>();
 
   constructor() {
 
@@ -34,5 +34,10 @@ export class RecipeService{
       target.description = recipe.description;
       target.ingredients = recipe.ingredients;
     }
+  }
+
+  add(newRecipe: Recipe) {
+    this.recipes.push(newRecipe);
+    this.newRecipeEmitter.emit(newRecipe);
   }
 }

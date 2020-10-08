@@ -10,11 +10,11 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { FormsModule } from '@angular/forms';
-import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { AppRoutesModule } from './app-routes.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { RecipeNewComponent } from './recipes/recipe-new/recipe-new.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,9 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     ShoppingListComponent,
     ShoppingEditComponent,
     RecipeDetailComponent,
-    DropdownDirective,
     RecipeEditComponent,
     ErrorPageComponent,
+    RecipeNewComponent,
   ],
   imports: [
     BrowserModule,

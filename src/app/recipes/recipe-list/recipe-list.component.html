@@ -1,5 +1,7 @@
 <ul class="list-group">
-  <li *ngFor="let recipeItem of recipes" class="list-group-item">
-    <a (click)="getSelectedRecipe(recipeItem)"><app-recipe-item [recipe]="recipeItem"></app-recipe-item></a>
-  </li>
+  <div *ngFor="let recipeItem of recipes">
+    <li class="list-group-item" routerLinkActive="list-group-item-primary">
+      <a [routerLink]="[recipeItem.id]"><app-recipe-item [recipe]="recipeItem"></app-recipe-item></a>
+    </li>
+  </div>
 </ul>
