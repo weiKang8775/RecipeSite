@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipesComponent } from './recipes/recipes.component';
@@ -11,7 +12,9 @@ const appRoutes: Routes = [
     { path: ':id', component: RecipeDetailComponent },
     { path: ':id/edit', component: RecipeEditComponent }
   ]},
-  { path: 'shopping-list', component: ShoppingListComponent}
+  { path: 'shopping-list', component: ShoppingListComponent },
+  { path: 'not-found', component: ErrorPageComponent },
+  { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({

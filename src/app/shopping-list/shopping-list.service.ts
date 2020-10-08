@@ -1,21 +1,24 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { EventEmitter, Injectable, OnInit } from "@angular/core";
 import { Ingredient } from '../shared/ingredient.model';
 
 @Injectable()
-export class ShoppingListService{
-  ingredients: Ingredient[] = [
-    new Ingredient("Flour", 10, "g"),
-    new Ingredient("Apple", 3)
-  ];
-  addIngredient = new EventEmitter<Ingredient>();
+export class ShoppingListService implements OnInit {
+  ingredients: Ingredient[] = [];
+  newIngredientsEmitter = new EventEmitter<Ingredient[]>();
 
   constructor() {
-    this.addIngredient.subscribe((newIngredient: Ingredient) => {
-      this.ingredients.push(newIngredient);
-    })
+  }
+
+  ngOnInit() {
+
   }
 
   getIngredients(): Ingredient[] {
     return this.ingredients.slice();
+  }
+
+  addIngredients(...ingredients: Ingredient[]) {
+    this.ingredients.push(...ingredients);
+    this.newIngredientsEmitter.emit(ingredients);
   }
 }

@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { AppRoutesModule } from './app-routes.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,13 @@ import { AppRoutesModule } from './app-routes.module';
     RecipeDetailComponent,
     DropdownDirective,
     RecipeEditComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutesModule
+    AppRoutesModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

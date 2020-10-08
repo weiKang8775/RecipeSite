@@ -8,11 +8,11 @@ export class RecipeService{
     new Recipe("Pasta", "Best Pasta", "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/28055/recipe-book-clipart-md.png", [new Ingredient("Flour", 10, "g"), new Ingredient("Water", 500, "ml")]),
     new Recipe("Ramen", "Best Ramen", "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/28055/recipe-book-clipart-md.png", [new Ingredient("Flour", 10, "g"), new Ingredient("Water", 500, "ml")])
   ];
+  recipeSelected = new EventEmitter<Recipe>();
+
   constructor() {
 
   }
-
-  recipeSelected = new EventEmitter<Recipe>();
 
   getRecipes(): Recipe[] {
     return this.recipes.slice();
@@ -28,9 +28,11 @@ export class RecipeService{
   }
 
   save(recipe: Recipe) {
-    const target = this.find(recipe.id);
-    target.name = recipe.name;
-    target.description = recipe.description;
-    target.ingredients = recipe.ingredients;
+    if (recipe.name !== '' && recipe.description !== '') {
+      const target = this.find(recipe.id);
+      target.name = recipe.name;
+      target.description = recipe.description;
+      target.ingredients = recipe.ingredients;
+    }
   }
 }

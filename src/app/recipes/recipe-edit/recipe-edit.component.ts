@@ -28,7 +28,9 @@ export class RecipeEditComponent implements OnInit {
   }
 
   addIngredient(name: HTMLInputElement, amount: HTMLInputElement, unit: HTMLInputElement) {
-    this.recipeIngredients.push(new Ingredient(name.value, +amount.value, unit.value));
+    if (name.value !== '' && (amount.value !== '' && +amount.value > 0)) {
+      this.recipeIngredients.push(new Ingredient(name.value, +amount.value, unit.value));
+    }
   }
 
   saveRecipe() {
