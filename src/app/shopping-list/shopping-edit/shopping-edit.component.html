@@ -1,19 +1,28 @@
-<div class="container">
-  <form autocomplete="off" class="form-inline">
-    <div class="form-group ml-3">
-      <label for="ingredientInput">Ingredient</label>
-      <input type="text" class="form-control ml-2" id="ingredientInput" #nameInput>
+<div class="container mt-4">
+  <form autocomplete="off" class="d-flex justify-content-between align-items-center" [formGroup]="addIngredientForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="ingredientName">Ingredient</label>
+      <input type="text" class="form-control" id="ingredientName" formControlName="name">
+      <span class="form-text text-danger" *ngIf="!addIngredientForm.get('name').valid && addIngredientForm.get('name').touched; else nameErrorText">Invalid Ingredient</span>
+      <ng-template #nameErrorText>
+        <span class="form-text" >&nbsp;</span>
+      </ng-template>
     </div>
     <div class="form-group ml-3">
       <label for="ingredientAmount">Amount</label>
-      <input type="number" class="form-control ml-2" id="ingredientAmount" #amountInput>
+      <input type="number" class="form-control" id="ingredientAmount" formControlName="amount">
+      <span class="form-text text-danger" *ngIf="!addIngredientForm.get('amount').valid && addIngredientForm.get('amount').touched; else amountErrorText">Invalid Amount</span>
+      <ng-template #amountErrorText>
+        <div class="form-text">&nbsp;</div>
+      </ng-template>
     </div>
     <div class="form-group ml-3">
       <label for="ingredientUnit">Unit</label>
-      <input type="text" class="form-control ml-2" id="ingredientUnit" #unitInput>
+      <input type="text" class="form-control" id="ingredientUnit" formControlName="unit">
+      <div class="form-text">&nbsp;</div>
     </div>
-    <button type="submit" class="btn btn-primary ml-2" (click)="addIngredient(nameInput, amountInput, unitInput)">
-      Add
-    </button>
+    <div class="form-group ml-3">
+      <button type="submit" class="btn btn-primary" [textContent]="mode" [disabled]="addIngredientForm.invalid"></button>
+    </div>
   </form>
 </div>

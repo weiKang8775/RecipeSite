@@ -1,34 +1,39 @@
-<form autocomplete="off">
+<form autocomplete="off" [formGroup]="recipeForm">
   <div class="form-group">
     <label for="nameInput">Name</label>
-    <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp" [(ngModel)]="recipeName" [ngModelOptions]="{standalone: true}">
+    <input type="text" class="form-control" id="nameInput" formControlName="recipeName">
+    <span *ngIf="!recipeForm.get('recipeName').valid" class="text-danger">Invalid Name</span>
   </div>
   <div class="form-group">
     <label for="descriptionInput">Description</label>
-    <input type="text" class="form-control" id="descriptionInput" aria-describedby="emailHelp" [(ngModel)]="recipeDescription" [ngModelOptions]="{standalone: true}">
+    <input type="text" class="form-control" id="descriptionInput" formControlName="description">
+    <span *ngIf="!recipeForm.get('description').valid" class="text-danger">Invalid Description</span>
   </div>
+</form>
+<form autocomplete="off" [formGroup]="ingredientForm" (ngSubmit)="addIngredient()">
   <div class="d-flex justify-content-between align-items-end">
     <div class="form-group">
       <label for="ingredientInput">Ingredient</label>
-      <input type="text" class="form-control" id="ingredientInput" aria-describedby="emailHelp" #nameInput>
+      <input type="text" class="form-control" id="ingredientInput" aria-describedby="emailHelp" formControlName="ingredientName">
     </div>
     <div class="form-group">
       <label for="ingredientAmount">Amount</label>
-      <input type="number" class="form-control" id="ingredientAmount" #amountInput>
+      <input type="number" class="form-control" id="ingredientAmount" formControlName="amount">
     </div>
     <div class="form-group">
       <label for="ingredientUnit">Unit</label>
-      <input type="text" class="form-control" id="ingredientUnit" #unitInput>
+      <input type="text" class="form-control" id="ingredientUnit" formControlName="unit">
     </div>
-    <button type="submit" class="btn btn-primary mb-3 ml-2" (click)="addIngredient(nameInput, amountInput, unitInput)">
-      Add
-    </button>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary ml-2 ingredient-btn" [disabled]="ingredientForm.invalid" [textContent]="ingredientMode"></button>
+    </div>
   </div>
-
+  <span *ngIf="!ingredientForm.get('ingredientName').valid && ingredientForm.get('ingredientName').touched" class="text-danger d-block">Invalid Ingredient</span>
+  <span *ngIf="!ingredientForm.get('amount').valid && ingredientForm.get('amount').touched" class="text-danger d-block">Invalid Amount</span>
 </form>
 <ul class="list-group mt-4">
   <li *ngFor="let ingredient of recipeIngredients" class="list-group-item">
-    {{ ingredient.name }} ({{ingredient.amount}}{{ingredient.unit}})
+    <a style="cursor: pointer;" (click)="editIngredient(ingredient)">{{ ingredient.name }} ({{ingredient.amount}}{{ingredient.unit}})</a>
   </li>
 </ul>
-<button type="button" class="btn btn-primary mt-4" (click)="saveRecipe()">Save</button>
+<button type="button" class="btn btn-primary mt-4" (click)="saveRecipe()" [disabled]="recipeForm.invalid">Save</button>

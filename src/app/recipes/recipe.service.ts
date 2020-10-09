@@ -14,30 +14,44 @@ export class RecipeService{
 
   }
 
+  // Returns a copy of the stored recipes
   getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
 
+  // Returns an instance of Recipe with the
+  // Given id or null if no id matches the
+  // id of stored recipes
   find(id: number): Recipe {
+
     for (let recipe of this.recipes) {
       if (recipe.id === id) {
         return recipe;
       }
     }
+
     return null;
+    
   }
 
+  // Called after editing a recipe
   save(recipe: Recipe) {
-    if (recipe.name !== '' && recipe.description !== '') {
-      const target = this.find(recipe.id);
+
+    const target = this.find(recipe.id);
+
+    if (recipe.name !== '' && recipe.description !== '' && target) {
       target.name = recipe.name;
       target.description = recipe.description;
       target.ingredients = recipe.ingredients;
     }
+
   }
 
+  // Used for new 
   add(newRecipe: Recipe) {
+
     this.recipes.push(newRecipe);
     this.newRecipeEmitter.emit(newRecipe);
+
   }
 }
